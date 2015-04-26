@@ -40,7 +40,10 @@ let s:Proc = s:V.import('Process')
 let s:Filepath = s:V.import('System.Filepath')
 
 function! s:get_repo_dir() abort
-  return yacd#get_root_dir(expand('%:p'))
+  let cwd = expand('%:p')
+  return (cwd !=# '')
+      \ ? yacd#get_root_dir(cwd)
+      \ : ''
 endfunction
 
 ""

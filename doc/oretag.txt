@@ -1,6 +1,6 @@
 *oretag.txt*	ore no ore niyoru ore notameno ctag plugin
 
-Version: 1.0.0
+Version: 1.0.1
 Author : uochan <liquidz.uo+vim@gmail.com>
 License: MIT LICENSE
 
