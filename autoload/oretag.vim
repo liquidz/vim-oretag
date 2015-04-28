@@ -51,13 +51,13 @@ endfunction
 function! oretag#get_tag_filename(repo_root_dir, filetype) abort
   let name = s:Http.encodeURIComponent(a:repo_root_dir)
       \ . '.' . a:filetype . '.tags'
-  return s:Filepath.join(g:oretag#tag_dir, name)
+  return s:Filepath.join(expand(g:oretag#tag_dir), name)
 endfunction
 
 ""
 " Generate tag file.
 function! oretag#generate_tag() abort
-  if g:oretag#enable
+  if g:oretag#enable && &filetype !=# ''
     let repo_dir = s:get_repo_dir()
     if repo_dir !=# ''
       let tagfile = oretag#get_tag_filename(repo_dir, &filetype)
@@ -73,7 +73,7 @@ endfunction
 ""
 " Execute :setlocal tags=...
 function! oretag#set_tag() abort
-  if g:oretag#enable
+  if g:oretag#enable && &filetype !=# ''
     let repo_dir = s:get_repo_dir()
     let filename = oretag#get_tag_filename(repo_dir, &filetype)
     execute 'setlocal tags=' . filename
